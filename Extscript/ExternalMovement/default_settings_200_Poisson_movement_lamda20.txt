@@ -1,0 +1,419 @@
+Scenario.name = PDM_Scenario
+
+#Extreme_load M-5-15	IM-30,45
+#Low_Load     M 30-60	IM-75-90
+#Medium Load  M-10-25	IM-30,45
+
+Scenario.simulateConnections = true
+Scenario.updateInterval = 0.1
+Scenario.endTime = 72000
+Scenario.nrofHostGroups = 28
+###############################################################################
+## Interface-specific settings:
+btInterface.type = SimpleBroadcastInterface
+btInterface.transmitSpeed = 256k
+btInterface.transmitRange = 10
+
+CNInterface.type = SimpleBroadcastInterface
+CNInterface.transmitSpeed = 2560k
+CNInterface.transmitRange = 10
+
+wifiInterface.type = SimpleBroadcastInterface
+wifiInterface.transmitSpeed = 1024k
+#1500
+wifiInterface.transmitRange =9000
+
+iwifiInterface.type = SimpleBroadcastInterface
+iwifiInterface.transmitSpeed = 1k
+#1500
+iwifiInterface.transmitRange =1
+
+
+DBInterface.type = SimpleBroadcastInterface
+DBInterface.transmitSpeed = 256k
+DBInterface.transmitRange = 2000
+
+ADBInterface.type = SimpleBroadcastInterface
+ADBInterface.transmitSpeed = 2560k
+ADBInterface.transmitRange = 100
+
+SATInterface.type = SimpleBroadcastInterface
+SATInterface.transmitSpeed = 110k
+SATInterface.transmitRange = 20000
+
+SAT_CNInterface.type = SimpleBroadcastInterface
+SAT_CNInterface.transmitSpeed = 2500k
+SAT_CNInterface.transmitRange = 10
+###############################################################################
+# Common settings for all groups
+Group.nrofApplications = 0
+Group.movementModel = PossionPostOfficeClusterMovement
+Group.router = EpidemicRouter
+Group.bufferSize = 2048M
+Group.scanInterval = 0
+Group.speed = 1.1,1.39
+Group.msgTtl = 200
+Group.waitTime = 240,241
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+#Group.clusterStops = 3,5
+Group.clusterStops = 3,3
+Group.clusterRange = 2000
+
+
+ExternalMovement.file = ExternalMovement200AT_v2.txt
+################################################################################
+#UNICAST specific settings
+
+Group.mcs_message = N
+# node # of MCS
+Group.mcs_address=49
+Group.firstBT = 53
+Group.firstCD = 38
+Group.firstADB = 19
+#Group.firstSAT = 58
+Group.firstWIFI = 47
+# node id of the wifi of the group to which the cluster belongs
+Group.clusterWifi = 47,48,47,48,49,47,49,49,50,51,49,51,50,49,52,52,52,47,52
+#total data mules
+Group.DMS=9
+# non GCs visited by each dm
+Group.CD1= 12
+Group.CD2= 13
+Group.CD3= 17,19
+Group.CD4= 15
+Group.CD5= 2
+Group.CD6= 11,14
+Group.CD7= 7,8
+Group.CD8= 3,18
+Group.CD9= 6
+
+# Tags must be same as the groupID
+Group.bt_tag = p
+Group.cd_tag = CD
+Group.adb_tag = ADB
+#Group.sat_tag = SAT_
+Group.wifi_tag = WIFI_
+Group.nrofHosts = 10
+Group.stage1 = 64800
+Group.nodespc = 10
+
+# Starting and ending times of each warmup duration
+Group.stage_warmups = 0, 5000 , 64800 , 73400, 133200
+
+# Node number of the group center dropboxes
+# Dropboxes start from 19 to 37. So, 1 has ADB19 and 19 has ADB37
+# Centres for 200AT are 1,4,5,9,10,16
+Group.group_centers = 19,22,23,27,28,34
+
+#################################################################################
+#Centre
+Group1.groupID = DB
+Group1.nrofHosts = 19
+Group1.movementModel = ExternalMovement
+Group1.nrofInterfaces = 1
+Group1.interface1 = DBInterface
+###################################################################################
+##ActualDropBox
+Group2.groupID = ADB
+Group2.nrofHosts = 19
+Group2.movementModel = ExternalMovement
+Group2.nrofInterfaces = 3
+Group2.interface1 = ADBInterface
+Group2.interface2 = btInterface
+Group2.interface3 = CNInterface
+####################################################################################
+##CarrierDevice
+Group3.groupID = CD
+Group3.nrofHosts = 9
+Group3.movementModel = ExternalMovement
+Group3.nrofInterfaces = 2
+Group3.interface1 = CNInterface
+Group3.interface2 = SAT_CNInterface
+##############################--1--#####################################################
+#1
+Group4.groupID = WIFI_
+Group4.nrofHosts = 1
+Group4.movementModel = ExternalMovement
+Group4.nrofInterfaces = 2
+Group4.interface1 = wifiInterface
+Group4.interface2 = ADBInterface
+Group4.activeTimes = 0,133200
+################################--2--###################################################
+#2
+Group5.groupID = WIFI_
+Group5.nrofHosts = 1
+Group5.movementModel = ExternalMovement
+Group5.nrofInterfaces = 2
+Group5.interface1 = wifiInterface
+Group5.interface2 = ADBInterface
+Group5.activeTimes = 0,133200
+###############################--3--####################################################
+#5
+Group6.groupID = WIFI_
+Group6.nrofHosts = 1
+Group6.movementModel = ExternalMovement
+Group6.nrofInterfaces = 2
+Group6.interface1 = wifiInterface
+Group6.interface2 = ADBInterface
+Group6.activeTimes = 0,133200
+################################--4--###################################################
+#9
+Group7.groupID = WIFI_
+Group7.nrofHosts = 1
+Group7.movementModel = ExternalMovement
+Group7.nrofInterfaces = 2
+Group7.interface1 = wifiInterface
+Group7.interface2 = ADBInterface
+Group7.activeTimes = 0,133200
+#######################################--5-############################################
+#10
+Group8.groupID = WIFI_
+Group8.nrofHosts = 1
+Group8.movementModel = ExternalMovement
+Group8.nrofInterfaces = 2
+Group8.interface1 = wifiInterface
+Group8.interface2 = ADBInterface
+Group8.activeTimes = 0,133200
+##################################--6--#################################################
+#16
+Group9.groupID = WIFI_
+Group9.nrofHosts = 1
+Group9.movementModel = ExternalMovement
+Group9.nrofInterfaces = 2
+Group9.interface1 = wifiInterface
+Group9.interface2 = ADBInterface
+Group9.activeTimes = 0,133200
+
+###################################################################################
+
+
+
+
+#Cluster1
+	Group10.clusterCenter = 275, 850
+	Group10.dblocation = 240, 830
+	Group10.groupID = p1_
+	Group10.nrofHosts = 10
+	Group10.movementModel = PossionPostOfficeClusterMovement
+	Group10.interface1 = btInterface
+	Group10.activeTimes = 0,133200
+#Cluster2
+	Group11.clusterCenter = 200, 680
+	Group11.dblocation = 160, 680
+	Group11.groupID = p2_
+	Group11.nrofHosts = 10
+	Group11.movementModel = PossionPostOfficeClusterMovement
+	Group11.interface1 = btInterface
+	Group11.activeTimes = 0,133200
+#Cluster3
+	Group12.clusterCenter = 165, 800
+	Group12.dblocation = 150, 820
+	Group12.groupID = p3_
+	Group12.nrofHosts = 10
+	Group12.movementModel = PossionPostOfficeClusterMovement
+	Group12.interface1 = btInterface
+	Group12.activeTimes = 0,133200
+#Cluster4
+	Group13.clusterCenter = 80, 680
+	Group13.dblocation = 70, 660
+	Group13.groupID = p4_
+	Group13.nrofHosts = 10
+	Group13.movementModel = PossionPostOfficeClusterMovement
+	Group13.interface1 = btInterface
+	Group13.activeTimes = 0,133200
+#Cluster5
+	Group14.clusterCenter = 240, 560
+	Group14.dblocation = 220, 550
+	Group14.groupID = p5_
+	Group14.nrofHosts = 10
+	Group14.movementModel = PossionPostOfficeClusterMovement
+	Group14.interface1 = btInterface
+	Group14.activeTimes = 0,133200
+	Group14.activeTimes = 0,133200
+#Cluster6
+	Group15.clusterCenter = 300, 740
+	Group15.dblocation = 310, 730
+	Group15.groupID = p6_
+	Group15.nrofHosts = 10
+	Group15.movementModel = PossionPostOfficeClusterMovement
+	Group15.interface1 = btInterface
+	Group15.activeTimes = 0,133200
+#Cluster7
+	Group16.clusterCenter = 130, 550
+	Group16.dblocation = 110, 550
+	Group16.groupID = p7_
+	Group16.nrofHosts = 10
+	Group16.movementModel = PossionPostOfficeClusterMovement	
+	Group16.interface1 = btInterface
+	Group16.activeTimes = 0,133200
+#Cluster8
+	Group17.clusterCenter = 170, 440
+	Group17.dblocation = 135, 430
+	Group17.groupID = p8_
+	Group17.nrofHosts = 10
+	Group17.movementModel = PossionPostOfficeClusterMovement
+	Group17.interface1 = btInterface
+	Group17.activeTimes = 0,133200
+#Cluster9
+	Group18.clusterCenter = 200, 250
+	Group18.dblocation = 200, 220
+	Group18.groupID = p9_
+	Group18.nrofHosts = 10
+	Group18.movementModel = PossionPostOfficeClusterMovement
+	Group18.interface1 = btInterface
+	Group18.activeTimes = 0,133200
+#Cluster10
+	Group19.clusterCenter = 270, 370
+	Group19.dblocation = 245, 370
+	Group19.groupID = p10_
+	Group19.nrofHosts = 10
+	Group19.movementModel = PossionPostOfficeClusterMovement
+	Group19.interface1 = btInterface
+	Group19.activeTimes = 0,133200
+#Cluster11
+	Group20.clusterCenter = 350, 480
+	Group20.dblocation = 320, 470
+	Group20.groupID = p11_
+	Group20.nrofHosts = 10
+	Group20.movementModel = PossionPostOfficeClusterMovement
+	Group20.interface1 = btInterface
+	Group20.activeTimes = 0,133200
+#Cluster12
+	Group21.clusterCenter = 360, 275
+	Group21.dblocation = 360, 260
+	Group21.groupID = p12_
+	Group21.nrofHosts = 10
+	Group21.movementModel = PossionPostOfficeClusterMovement
+	Group21.interface1 = btInterface
+	Group21.activeTimes = 0,133200
+#Cluster13
+	Group22.clusterCenter = 295, 165
+	Group22.dblocation = 280, 155
+	Group22.groupID = p13_
+	Group22.nrofHosts = 10
+	Group22.movementModel = PossionPostOfficeClusterMovement
+	Group22.interface1 = btInterface
+	Group22.activeTimes = 0,133200
+#Cluster14
+	Group23.clusterCenter = 350, 620
+	Group23.dblocation = 330, 610
+	Group23.groupID = p14_
+	Group23.nrofHosts = 10
+	Group23.movementModel = PossionPostOfficeClusterMovement
+	Group23.interface1 = btInterface
+	Group23.activeTimes = 0,133200
+#Cluster15
+	Group24.clusterCenter = 560, 530
+	Group24.dblocation = 555, 500
+	Group24.groupID = p15_
+	Group24.nrofHosts = 10
+	Group24.movementModel = PossionPostOfficeClusterMovement
+	Group24.interface1 = btInterface
+	Group24.activeTimes = 0,133200
+#Cluster16
+	Group25.clusterCenter = 490, 630
+	Group25.dblocation = 480, 615
+	Group25.groupID = p16_
+	Group25.nrofHosts = 10
+	Group25.movementModel = PossionPostOfficeClusterMovement
+	Group25.interface1 = btInterface
+	Group25.activeTimes = 0,133200
+#Cluster17
+	Group26.clusterCenter = 520, 745
+	Group26.dblocation = 510, 730
+	Group26.groupID = p17_
+	Group26.nrofHosts = 10
+	Group26.movementModel = PossionPostOfficeClusterMovement
+	Group26.interface1 = btInterface
+	Group26.activeTimes = 0,133200
+#Cluster18
+	Group27.clusterCenter = 55, 810
+	Group27.dblocation = 25, 790
+	Group27.groupID = p18_
+	Group27.nrofHosts = 10
+	Group27.movementModel = PossionPostOfficeClusterMovement
+	Group27.interface1 = btInterface
+	Group27.activeTimes = 0,133200
+#Cluster19
+	Group28.clusterCenter = 540, 870
+	Group28.dblocation = 515, 850
+	Group28.groupID = p19_
+	Group28 .nrofHosts = 10
+	Group28.movementModel = PossionPostOfficeClusterMovement
+	Group28.interface1 = btInterface
+	Group28.activeTimes = 0,133200
+###################################################################################
+## Message creation parameters 
+Events.nrof = 2
+Events1.class = PossionMessageEventGenerator
+Events1.rate = 2
+Events1.interval =  1,1
+Events1.size = 1M,1M
+Events1.hosts = 53,243
+Events1.tohosts = 49,49
+Events1.prefix = M
+
+
+
+Events2.class = PossionMessageEventGenerator
+Events2.rate = 20
+Events2.interval = 20,21
+Events2.size = 1M,1M
+Events2.hosts = 49,49
+Events2.tohosts = 53,243
+Events2.prefix = N
+###############################################################################
+
+## Movement model settings
+MovementModel.rngSeed = 1
+MovementModel.worldSize = 650, 1350
+MovementModel.warmup = 1000
+###############################################################################
+
+## Reports
+Report.nrofReports = 10
+Report.warmup = 0
+Report.reportDir = reports/deepak_13_07_2014/200/Lamda20_Poisson_Message_g
+Report.report1 = MessageStatsReport
+Report.report2 = EventLogReport
+Report.report3 = CreatedMessagesReport
+Report.report4 = DeliveryProbReport
+Report.report5 = EmergencyMessageStatsReport
+Report.report6 = NormalMessageStatsReport
+Report.report7 = EMDeliveryProbReport
+Report.report8 = NMDeliveryProbReport
+Report.report9 = MCSMessageStatsReport
+Report.report10 =  DeliveredMessagesReport
+###############################################################################
+
+## Default settings for some routers settings
+ProphetRouter1.secondsInTimeUnit = 30
+SprayAndWaitRouter.nrofCopies = 5
+SprayAndWaitRouter.binaryMode = true
+MaxPropRouter.probSetMaxSize = 50
+DecisionEngineRouter.decisionEngine = decisionengine.SnFDecisionEngine
+DecisionEngineRouter.nrofCopies = 3
+DecisionEngineRouter.binaryMode = true
+###############################################################################
+
+## Optimization settings -- these affect the speed of the simulation
+## see World class for details.
+Optimization.cellSizeMult = 5
+Optimization.randomizeUpdateOrder = true
+###############################################################################
+
+## GUI settings
+# GUI underlay image settings
+GUI.UnderlayImage.fileName = data/sundarban.jpg
+# Image offset in pixels (x, y)
+GUI.UnderlayImage.offset = -165,19
+# Scaling factor for the image
+GUI.UnderlayImage.scale = 1
+# Image rotation (radians)
+GUI.UnderlayImage.rotate = -0.015
+
+# how many events to show in the log panel (default = 30)
+GUI.EventLogPanel.nrofEvents = 100
+# Regular Expression log filter (see Pattern-class from the Java API for RE-matching details)
+#GUI.EventLogPanel.REfilter = .*p[1-9]<->p[1-9]$

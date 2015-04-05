@@ -1,0 +1,16 @@
+ExternalMovement (scripts):
+-------------------------
+
+## "script.py" takes an External Movement File and generates mule information from it. mule info: muleID, trajectory, time taken to move from  one cluster to another, waiting time at each cluster.
+## "script.py" is used for generating a new External Movement File for good-road and bad-road conditions.
+
+##The output are files ( named with the ID of the Mule ) are stored in the "ExternalMovement/Mules/Mule" directory.
+
+##Inside the "ExternalMovement/" directory we have another script named "externalScript.py" which generates the External Movement File
+based on the output files stored in the "ExternalMovement/Mules/Mule" directory.
+
+
+## How to use the file
+
+	1. Run the 1click.sh on the terminal.
+	2. Go to "ExternalMovement/" and check the file named externalMovement.txt.
