@@ -134,7 +134,7 @@ public class GroupFormation {
         wr.println(muleID);
        // System.out.println("GC: "+GroupCentre);
         for(Integer i : GroupCentre)
-            wr.print((20+i)+ " ");
+            wr.print((Graph.size+i)+ " ");
         wr.close();
         int tempCount= muleID;
         for(Group group: groupList)
@@ -147,7 +147,7 @@ public class GroupFormation {
                         writer= new PrintWriter(filename, "UTF-8");
 						writer.println(tempCount++ + " [Mule ID]");
                         for(Integer tr: dm.trajectory)
-                            writer.print((20+tr)+" ");
+                            writer.print((Graph.size+tr)+" ");
                         writer.println("[trajectory]");
 
                         int prev= dm.trajectory.get(0);
@@ -200,12 +200,12 @@ public class GroupFormation {
                         writer.println(tempCount++ + " [Mule ID]");
                         for(Integer tr: dm.trajectory)
                         {
-                            idb.add(20+tr);
+                            idb.add(Graph.size+tr);
                             writer.print(tr+",");
                         }
                         writer.println("[trajectory]");
                         for(Integer tr: dm.trajectory)
-                            writer.print((tr+20)+",");
+                            writer.print((tr+Graph.size)+",");
                         writer.println(" [trajectory id according to ONE default setting ]");
                         writer.println(dm.Tround+ " [Tround]");
                         writer.println(dm.Tworse+" [Tworse]");
@@ -222,7 +222,7 @@ public class GroupFormation {
                     }
                 }
                 
-                wifi_idb.println((20+currentGC)+" : "+idb);
+                wifi_idb.println((Graph.size+currentGC)+" : "+idb);
                 writer.println();
         }
         System.out.println("Latency: "+latency+"\t"+"Number Of dataMules: "+numOfDataMule+"\t"+"Groups: "+groupList.size());
